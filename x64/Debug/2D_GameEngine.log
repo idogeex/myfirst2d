@@ -1,2 +1,7 @@
 ﻿  Game.cpp
+A:\2D_GameEngine\ColliderComponent.h(6,8): warning C4099: 'ColliderComponent': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'Game.cpp')
+  A:\2D_GameEngine\ColliderComponent.h(6,8):
+  see declaration of 'ColliderComponent'
+  
   2D_GameEngine.vcxproj -> A:\2D_GameEngine\x64\Debug\2D_GameEngine.exe
