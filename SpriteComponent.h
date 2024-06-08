@@ -2,6 +2,9 @@
 #include "Components.h"
 #include "SDL.h"
 #include "TextureManager.h"
+#include "Animation.h"
+#include <map>
+#include "AssetManager.h"
 
 class SpriteComponent : public Component
 {
@@ -15,28 +18,41 @@ private:
 	int speed = 100;
 
 public:
+
+	int animIndex = 0;
+	std::map<const char*, Animation> animations;
+
+	SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
+
 	SpriteComponent() = default;
-	SpriteComponent(const char* path)
+	SpriteComponent(std::string id)
 	{
-		setTex(path);
+		setTex(id);
 	}
 
-	SpriteComponent(const char* path, int nFrames, int mSpeed)
+	SpriteComponent(std::string id, bool isAnimated)
 	{
-		animated = true;
-		frames = nFrames;
-		speed = mSpeed;
-		setTex(path);
+		animated = isAnimated;
+
+		Animation idle = Animation(0, 3, 100);
+		Animation walk = Animation(1, 8, 100);
+
+		animations.emplace("Idle", idle);
+		animations.emplace("Walk", walk);
+		
+		Play("Idle");
+
+		setTex(id);
 	}
 
 	~SpriteComponent()
 	{
-		SDL_DestroyTexture(texture);
+		
 	}
 
-	void setTex(const char* path) 
+	void setTex(std::string id) 
 	{
-		texture = TextureManager::LoadTexture(path);
+		texture = Game::assets->GetTexture(id);
 	}
 
 	void init() override
@@ -56,14 +72,24 @@ public:
 			srcRect.x = srcRect.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
 		}
 
-		destRect.x = static_cast<int>(transform->position.x);
-		destRect.y = static_cast<int>(transform->position.y);
+		srcRect.y = animIndex * transform->height;
+
+		destRect.x = static_cast<int>(transform->position.x) - Game::camera.x;
+		destRect.y = static_cast<int>(transform->position.y) - Game::camera.y;
 		destRect.w = transform->width * transform->scale;
 		destRect.h = transform->height * transform->scale;
 	}
 
 	void draw() override
 	{
-		TextureManager::Draw(texture, srcRect, destRect);
+		TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
 	}
+
+	void Play(const char* animName)
+	{
+		frames = animations[animName].frames;
+		animIndex = animations[animName].index;
+		speed = animations[animName].speed;
+	}
+
 };

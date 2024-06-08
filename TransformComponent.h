@@ -22,7 +22,8 @@ public:
 
 	TransformComponent(int sc)
 	{
-		position.Zero();
+		position.x = 600;
+		position.y = 420;
 		scale = sc;
 	}
 

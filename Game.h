@@ -4,7 +4,9 @@
 #undef main
 #include <iostream>
 #include <vector>
-using namespace std;
+#include "AssetManager.h"
+
+class AssetManager;
 
 class ColliderComponent;
 
@@ -21,13 +23,21 @@ public:
 	void render();
 	void clean();
 
-	static void AddTile(int id, int x, int y);
 	static SDL_Renderer* renderer;
 	static SDL_Event event;
-	static vector<ColliderComponent*> colliders;
+	static bool isRunning;
+	static SDL_Rect camera;
+	static AssetManager* assets;
+
+	enum groupLabels : std::size_t
+	{
+		groupMap,
+		groupPlayers,
+		groupColliders,
+		groupProjectiles
+	};
 
 private:
 	double cnt = 0;
-	bool isRunning;
 	SDL_Window* window;
 };
