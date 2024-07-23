@@ -1,21 +1,2 @@
-﻿  Game.cpp
-A:\2D_GameEngine\ColliderComponent.h(7,8): warning C4099: 'ColliderComponent': type name first seen using 'class' now seen using 'struct'
-  (compiling source file 'Game.cpp')
-  A:\2D_GameEngine\ColliderComponent.h(7,8):
-  see declaration of 'ColliderComponent'
-  
-A:\2D_GameEngine\TileComponent.h(25,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Game.cpp')
-  
-A:\2D_GameEngine\TileComponent.h(26,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Game.cpp')
-  
-A:\2D_GameEngine\TileComponent.h(39,27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Game.cpp')
-  
-A:\2D_GameEngine\TileComponent.h(40,27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Game.cpp')
-  
-A:\2D_GameEngine\Game.cpp(133,66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\2D_GameEngine\Game.cpp(134,66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  main.cpp
   2D_GameEngine.vcxproj -> A:\2D_GameEngine\x64\Debug\2D_GameEngine.exe

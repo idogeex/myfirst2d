@@ -106,7 +106,7 @@ void Game::update()
 	Vector2D playerPos = player.getComponent<TransformComponent>().position;
 
 	std::stringstream ss;
-	ss << "Plyaer position: " << playerPos;
+	ss << "Player position: " << playerPos;
 	label.getComponent<UILabel>().SetLabelText(ss.str(), "vgafixr");
 
 	manager.refresh();
